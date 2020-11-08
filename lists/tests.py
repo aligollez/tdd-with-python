@@ -14,6 +14,9 @@ class HomePageTest(TestCase):
         self.assertEqual(found.func, home_page)
 
     def test_home_page_returns_correct_html(self):
+        # create an HttpRequest object, which is what Django will see when a user's browser asks for a page
+        # pass it to out home_page view, which gives us a response.
+        # extract the .content of the response. call .decode() to convert (raw bytes) into string of HTML
         request = HttpRequest()
         response = home_page(request)
         html = response.content.decode('utf8')
