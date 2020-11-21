@@ -10,6 +10,9 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
+    def check_for_row_in_list_table(self, row_text):
+        pass
+
     def test_can_start_a_list_and_retrieve_it_later(self):
         # user checking homepage
         self.browser.get('http://localhost:8000')
@@ -27,9 +30,14 @@ class NewVisitorTest(unittest.TestCase):
         )
 
         # user types "Buy peacock feathers" into a text box
-        inputbox.send_keys('Buy peacock feathers')
-
         # user hits enter, the page updates, and now shows the page lists
+        inputbox.send_keys('Buy peacock feathers')
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        # user hits enter, the page updates again, and now shows the page lists
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox.send_keys('Use peacock feathers to make a fly')
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
 
